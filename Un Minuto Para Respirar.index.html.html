@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Un Minuto Para Respirar</title>
+<meta name="description" content="Para toda mujer que sigue adelante aunque esté agotada. Un espacio para detenerte, respirar y recibir lo que necesitas hoy." />
+<meta property="og:title" content="Un Minuto Para Respirar" />
+<meta property="og:description" content="Para toda mujer que sigue adelante aunque esté agotada. Respira. Responde. Recibe." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lavender: #7F77DD;
+    --lavender-dark: #534AB7;
+    --lavender-deeper: #3C3489;
+    --lavender-light: #EEEDFE;
+    --lavender-mid: #AFA9EC;
+    --teal: #1D9E75;
+    --teal-dark: #0F6E56;
+    --teal-light: #E1F5EE;
+    --teal-border: #5DCAA5;
+    --pink: #D4537E;
+    --amber: #BA7517;
+    --amber-dark: #854F0B;
+    --coral: #D85A30;
+    --coral-dark: #993C1D;
+    --text-main: #1e1b38;
+    --text-soft: #555370;
+    --text-muted: #9896b0;
+    --border-soft: #e0d9f8;
+    --bg-page: #faf8ff;
+    --bg-card: #ffffff;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 26px;
+    --radius-pill: 50px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--bg-page);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 5rem;
+  }
+
+  .container { width: 100%; max-width: 560px; }
+
+  .hero {
+    background: linear-gradient(155deg, #f0ecff 0%, #fce8f4 55%, #eaf8f3 100%);
+    border-radius: var(--radius-xl);
+    padding: 3.25rem 2.25rem 2.75rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    border: 1px solid #ddd0f8;
+    box-shadow: 0 4px 32px rgba(127,119,221,0.09);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(212,83,126,0.07);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: -20px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.06);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .hero-flowers { font-size: 24px; margin-bottom: 1.25rem; letter-spacing: 10px; }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--lavender-deeper);
+    line-height: 1.22;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title em { font-style: italic; color: var(--lavender); }
+
+  .hero-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-soft);
+    max-width: 430px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-tagline {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--lavender-dark);
+    background: rgba(127,119,221,0.09);
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(127,119,221,0.2);
+  }
+
+  .progress-wrap {
+    height: 4px;
+    background: #e8e2f8;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--lavender), var(--pink));
+    border-radius: 4px;
+    transition: width 0.45s ease;
+  }
+
+  .step-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #ddd0f8;
+    transition: all 0.3s;
+  }
+  .dot.active { background: var(--lavender); transform: scale(1.35); }
+  .dot.done { background: var(--teal); }
+
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 1.75rem 1.75rem;
+    box-shadow: 0 2px 20px rgba(127,119,221,0.07);
+    animation: fadeUp 0.35s ease both;
+  }
+
+  .question-num {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--text-main);
+    line-height: 1.45;
+    margin-bottom: 1.6rem;
+  }
+
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.75rem;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 16px;
+    background: #faf8ff;
+    border: 1.5px solid #e4ddf8;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align: left;
+    font-size: 15px;
+    color: var(--text-main);
+    font-family: 'Lato', sans-serif;
+    transition: all 0.2s;
+    width: 100%;
+    line-height: 1.4;
+  }
+
+  .option-btn:hover { border-color: var(--lavender); background: var(--lavender-light); color: var(--lavender-deeper); }
+  .option-btn.selected { border-color: var(--lavender); background: var(--lavender-light); color: var(--lavender-deeper); font-weight: 700; }
+
+  .radio-circle {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid #c8bff0;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .option-btn.selected .radio-circle { background: var(--lavender); border-color: var(--lavender); }
+  .radio-dot { width: 8px; height: 8px; border-radius: 50%; background: white; display: none; }
+  .option-btn.selected .radio-dot { display: block; }
+
+  .nav-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+  .btn-back {
+    background: none;
+    border: 1px solid #ccc;
+    color: #888;
+    padding: 11px 20px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .btn-back:hover { background: #f5f5f5; color: #444; }
+
+  .btn-next {
+    background: var(--lavender);
+    border: none;
+    color: white;
+    padding: 13px 30px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    transition: all 0.22s;
+    font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+    margin-left: auto;
+  }
+
+  .btn-next:hover:not(:disabled) { background: var(--lavender-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(127,119,221,0.3); }
+  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .btn-start {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--lavender);
+    color: white; border: none;
+    padding: 17px 44px;
+    border-radius: var(--radius-pill);
+    font-size: 17px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.22s;
+    box-shadow: 0 4px 22px rgba(127,119,221,0.28);
+    letter-spacing: 0.01em;
+  }
+
+  .btn-start:hover { background: var(--lavender-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(127,119,221,0.38); }
+
+  .result-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-soft);
+    padding: 2.75rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 28px rgba(127,119,221,0.09);
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .result-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 400;
+    color: var(--text-main);
+    line-height: 1.35;
+    margin-bottom: 0.85rem;
+  }
+
+  .result-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-soft);
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .soft-whisper {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--lavender-dark);
+    margin-bottom: 2rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--lavender-light);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--lavender);
+    text-align: left;
+    line-height: 1.75;
+  }
+
+  .whisper-label {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lavender-mid);
+    margin-bottom: 6px;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    transition: all 0.25s;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+    border: none;
+    letter-spacing: 0.01em;
+  }
+
+  .cta-lavender { background: var(--lavender); color: white; }
+  .cta-lavender:hover { background: var(--lavender-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(127,119,221,0.3); color: white; }
+
+  .cta-teal { background: var(--teal); color: white; }
+  .cta-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(29,158,117,0.3); color: white; }
+
+  .cta-amber { background: var(--amber); color: white; }
+  .cta-amber:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(186,117,23,0.3); color: white; }
+
+  .cta-coral { background: var(--coral); color: white; }
+  .cta-coral:hover { background: var(--coral-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(216,90,48,0.3); color: white; }
+
+  .cta-outline {
+    background: none;
+    border: 1.5px solid var(--border-soft);
+    color: var(--text-soft);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 28px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .cta-outline:hover { border-color: var(--lavender); color: var(--lavender); }
+
+  .form-section { text-align: left; margin-bottom: 1.5rem; }
+
+  .form-label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .form-input {
+    display: block;
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #ddd8f5;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    color: var(--text-main);
+    background: #faf8ff;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-input:focus { border-color: var(--lavender); background: #fff; }
+
+  .msg-success {
+    background: var(--teal-light);
+    border: 1px solid var(--teal-border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--teal-dark);
+    margin-bottom: 14px;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+  }
+
+  .msg-error {
+    background: #fff0f0;
+    border: 1px solid #f09595;
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #791f1f;
+    margin-bottom: 14px;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+  }
+
+  .separator { text-align: center; font-size: 13px; color: #bbb; margin: 14px 0; }
+
+  .restart-link {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--text-muted);
+    font-family: 'Lato', sans-serif;
+    display: flex; align-items: center; gap: 5px;
+    margin: 1.75rem auto 0;
+    transition: color 0.2s;
+  }
+
+  .restart-link:hover { color: var(--lavender); }
+
+  .secure-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  .hidden { display: none !important; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Lato', sans-serif;
+    line-height: 1.9;
+  }
+
+  .footer a { color: var(--lavender); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    body { padding: 1rem 0.75rem 3rem; }
+    .hero { padding: 2.25rem 1.5rem 2rem; }
+    .hero-title { font-size: 27px; }
+    .question-card, .result-card { padding: 1.75rem 1.25rem; }
+    .btn-start { padding: 15px 32px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div id="screen-intro">
+    <div class="hero">
+      <div class="hero-eyebrow">Para toda mujer que lo necesita</div>
+      <div class="hero-flowers">🌸 🌿 🌼</div>
+      <h1 class="hero-title">Un Minuto Para <em>Respirar</em></h1>
+      <p class="hero-body">
+        Hay días en que sigues adelante aunque por dentro ya no puedas más.
+        Este espacio es solo para ti — sin juicios, sin prisa, sin presión.
+        Solo tú, tu respiración, y lo que sientes de verdad.
+      </p>
+      <span class="hero-tagline">Detente un momento. Mereces este minuto.</span>
+    </div>
+    <div style="text-align:center;">
+      <button class="btn-start" onclick="startQuiz()">
+        &#10024; Comenzar mi minuto
+      </button>
+      <p style="font-size:13px; color:#aaa; margin-top:14px; font-family:'Lato',sans-serif;">5 preguntas · menos de 2 minutos</p>
+    </div>
+  </div>
+
+  <!-- PREGUNTAS -->
+  <div id="screen-questions" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+    </div>
+    <div class="step-dots" id="step-dots"></div>
+    <div id="question-container"></div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div id="screen-result" class="hidden"></div>
+
+  <div class="footer">
+    Hecho con amor · Un Respiro Para Tu Alma<br>
+    Porque tú importas, y mereces ser vista. &#127807;
+  </div>
+
+</div>
+
+<script>
+const PDF_URL = 'https://drive.google.com/uc?export=download&id=1K7VBLrMgXCHD7qDMM0uzpqmwXK8P2_YL';
+
+const questions = [
+  {
+    q: "¿Cómo te sientes hoy?",
+    opts: ["Agotada, pero sigo", "Abrumada por todo", "En paz, aunque con peso", "Rota por dentro", "No lo sé, pero algo me trajo aquí"]
+  },
+  {
+    q: "¿Qué te está pesando más ahora mismo?",
+    opts: ["Mis responsabilidades diarias", "Mi cansancio emocional", "Mi vida familiar o de pareja", "Algo que viví y que aún me duele", "Sentirme sola o sin apoyo"]
+  },
+  {
+    q: "¿Te permites al menos un minuto al día para ti?",
+    opts: ["Sí, lo intento", "No, siempre hay algo más urgente", "A veces, con culpa", "Quisiera, pero no sé cómo"]
+  },
+  {
+    q: "¿Sientes que hay heridas dentro de ti que aún no han sanado?",
+    opts: ["Sí, claramente", "Creo que sí, aunque no hablo de ello", "No estoy segura", "No, me siento bien"]
+  },
+  {
+    q: "¿Hoy podrías hacer algo por ti misma?",
+    opts: ["No puedo invertir nada ahora", "Puedo invertir 11.99 USD", "Puedo invertir 39.99 USD", "Puedo invertir más de 69.99 USD"]
+  }
+];
+
+const results = [
+  {
+    icon: "&#127807;",
+    badge: "Tu regalo de hoy",
+    badgeStyle: "background:#E1F5EE; color:#0F6E56;",
+    title: "Hoy solo necesitas un respiro",
+    body: "No necesitas nada más que detenerte un momento. Hay algo poderoso en reconocer que estás cansada — y que mereces descanso. Empieza aquí, con este regalo.",
+    whisper: "Tal vez no lo creas ahora, pero hay una presencia que te acompaña incluso en los momentos más silenciosos. No estás sola.",
+    whisperLabel: "Un pensamiento para ti",
+    type: "free"
+  },
+  {
+    icon: "&#128218;",
+    badge: "Ebook completo",
+    badgeStyle: "background:#EEEDFE; color:#534AB7;",
+    title: "Tu alma merece este espacio",
+    body: "Por 11.99 USD accedes al ebook completo 'Un Respiro Para Tu Alma' — 7 capítulos de alivio, reflexión y renovación interior. Pequeña inversión, profundo cambio.",
+    whisper: "A veces lo que más necesitamos no es una solución, sino un espacio donde alguien nos diga: te entiendo, has cargado mucho, puedes soltar un poco aquí.",
+    whisperLabel: "Palabras para el camino",
+    type: "paypal",
+    link: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E8YHFQ3DY8VRQ",
+    btnText: "Adquirir ebook — 11.99 USD",
+    btnClass: "cta-lavender"
+  },
+  {
+    icon: "&#128149;",
+    badge: "Sesión de 1 hora",
+    badgeStyle: "background:#FAEEDA; color:#633806;",
+    title: "Lo que sientes merece ser escuchado",
+    body: "Una sesión de 1 hora, contigo, de verdad. Un espacio seguro para soltar lo que pesa, sin juicios, con presencia completa. Porque mereces ser escuchada.",
+    whisper: "Hay algo transformador en sentarte, respirar, y dejar que alguien simplemente te vea — tal como eres. Eso también puede ser sanidad.",
+    whisperLabel: "Palabras para el camino",
+    type: "paypal",
+    link: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=25AHNEBFPLMS8",
+    btnText: "Agendar mi sesión — 39.99 USD",
+    btnClass: "cta-amber"
+  },
+  {
+    icon: "&#10024;",
+    badge: "Proceso de acompañamiento",
+    badgeStyle: "background:#FAECE7; color:#712B13;",
+    title: "Estás lista para algo más profundo",
+    body: "Tu cuerpo y tu alma están pidiendo un proceso de verdad. Acompañamiento semanal de 2 horas — para caminar juntas hacia tu sanidad integral, a tu ritmo.",
+    whisper: "El camino hacia adentro es el más valioso. No tienes que recorrerlo sola.",
+    whisperLabel: "Palabras para el camino",
+    type: "paypal",
+    link: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6H44589AZS8C2",
+    btnText: "Comenzar mi proceso — 69.99 USD",
+    btnClass: "cta-coral"
+  }
+];
+
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+
+function startQuiz() {
+  document.getElementById('screen-intro').classList.add('hidden');
+  document.getElementById('screen-questions').classList.remove('hidden');
+  renderDots();
+  renderQuestion();
+}
+
+function renderDots() {
+  const c = document.getElementById('step-dots');
+  c.innerHTML = '';
+  questions.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === current ? ' active' : '') + (i < current ? ' done' : '');
+    c.appendChild(d);
+  });
+}
+
+function renderQuestion() {
+  const pct = ((current + 1) / questions.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  const container = document.getElementById('question-container');
+  container.innerHTML = '';
+  const card = document.createElement('div');
+  card.className = 'question-card';
+  const optsHtml = questions[current].opts.map((opt, i) => {
+    const sel = answers[current] === i;
+    return `<button class="option-btn${sel ? ' selected' : ''}" onclick="selectOption(${i})">
+      <span class="radio-circle"><span class="radio-dot"></span></span>${opt}
+    </button>`;
+  }).join('');
+  card.innerHTML = `
+    <div class="question-num">Pregunta ${current + 1} de ${questions.length}</div>
+    <div class="question-text">${questions[current].q}</div>
+    <div class="options-grid">${optsHtml}</div>
+    <div class="nav-row">
+      ${current > 0 ? `<button class="btn-back" onclick="goBack()">&#8592; Volver</button>` : '<span></span>'}
+      <button class="btn-next" id="btn-next" onclick="goNext()" ${answers[current] === null ? 'disabled' : ''}>
+        ${current === questions.length - 1 ? 'Ver mi resultado' : 'Continuar'} &#8594;
+      </button>
+    </div>`;
+  container.appendChild(card);
+}
+
+function selectOption(idx) {
+  answers[current] = idx;
+  document.getElementById('btn-next').disabled = false;
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.classList.toggle('selected', i === idx);
+  });
+}
+
+function goNext() {
+  if (answers[current] === null) return;
+  if (current < questions.length - 1) {
+    current++;
+    renderDots();
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    showResult();
+  }
+}
+
+function goBack() {
+  if (current > 0) {
+    current--;
+    renderDots();
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showResult() {
+  const r = results[answers[4]] || results[0];
+  document.getElementById('screen-questions').classList.add('hidden');
+  const screen = document.getElementById('screen-result');
+  screen.classList.remove('hidden');
+
+  let ctaHtml = '';
+  if (r.type === 'free') {
+    ctaHtml = `
+      <div class="form-section">
+        <label class="form-label">Tu nombre</label>
+        <input class="form-input" type="text" id="free-name" placeholder="¿Cómo te llamas?" />
+        <label class="form-label">Tu correo electrónico</label>
+        <input class="form-input" type="email" id="free-email" placeholder="tu@correo.com" />
+        <label class="form-label">Tu teléfono (opcional)</label>
+        <input class="form-input" type="tel" id="free-phone" placeholder="+1 000 000 0000" />
+      </div>
+      <div id="free-msg"></div>
+      <button class="cta-btn cta-teal" onclick="downloadFree()">
+        &#8595; Descargar mi PDF gratuito
+      </button>
+      <p class="secure-note">Acceso inmediato. Sin costo. Con amor. &#127807;</p>`;
+  } else {
+    ctaHtml = `
+      <a href="${r.link}" target="_blank" rel="noopener" class="cta-btn ${r.btnClass}">
+        &#128274; ${r.btnText}
+      </a>
+      <p class="secure-note">Pago seguro a través de PayPal.</p>
+      <div class="separator">— o también —</div>
+      <button class="cta-outline" onclick="restartQuiz()">&#8635; Volver a empezar</button>`;
+  }
+
+  screen.innerHTML = `
+    <div class="result-card">
+      <span class="result-icon">${r.icon}</span>
+      <div class="result-badge" style="${r.badgeStyle}">${r.badge}</div>
+      <h2 class="result-title">${r.title}</h2>
+      <p class="result-body">${r.body}</p>
+      <div class="soft-whisper">
+        <span class="whisper-label">${r.whisperLabel}</span>
+        ${r.whisper}
+      </div>
+      ${ctaHtml}
+    </div>
+    <div style="text-align:center;">
+      <button class="restart-link" onclick="restartQuiz()">&#8635; Comenzar de nuevo</button>
+    </div>`;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function downloadFree() {
+  const name = document.getElementById('free-name').value.trim();
+  const email = document.getElementById('free-email').value.trim();
+  const msg = document.getElementById('free-msg');
+  if (!name || !email) {
+    msg.innerHTML = `<div class="msg-error">Por favor ingresa tu nombre y correo para continuar. &#128155;</div>`;
+    return;
+  }
+  if (!email.includes('@') || !email.includes('.')) {
+    msg.innerHTML = `<div class="msg-error">Por favor ingresa un correo electrónico válido.</div>`;
+    return;
+  }
+  msg.innerHTML = `<div class="msg-success">&#10003; ¡Listo, ${name}! Tu PDF se descargará en un momento. Que este minuto sea el inicio de algo hermoso para ti. &#127807;</div>`;
+  setTimeout(() => { window.open(PDF_URL, '_blank'); }, 900);
+}
+
+function restartQuiz() {
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  document.getElementById('screen-result').classList.add('hidden');
+  document.getElementById('screen-intro').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
